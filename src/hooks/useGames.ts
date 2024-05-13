@@ -2,6 +2,7 @@ import { useInfiniteQuery } from 'react-query';
 import { GameQuery } from '../App';
 import { Platform } from './usePlatforms';
 import APIClient, { FetchResponse } from '../services/api-client';
+import ms from 'ms';
 
 const apiClient = new APIClient<Game>('/games');
 
@@ -27,9 +28,11 @@ const useGames = (gameQuery: GameQuery) =>
           page: pageParam,
         },
       }),
+
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
     },
+    staleTime: ms('1d'),
   });
 
 export default useGames;
