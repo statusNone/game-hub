@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import APIClient from '../services/api-client';
-import { ScreenShot } from '../entities/Screenshot';
+import ScreenShot from '../entities/ScreenShot';
 
 const useScreenShots = (gameId: number) => {
   const apiClient = new APIClient<ScreenShot>(`/games/${gameId}/screenshots`);
